@@ -32,14 +32,28 @@ initializeDBAndServer()
 
 const validateValues = (request, response, next) => {
   const {status, priority, category} = request.query
+<<<<<<< HEAD
   let validDueDate = false
+=======
+  let validDueDate = true
+>>>>>>> e3ca3a75e1cf096dc5632b60545ca386d5d43dca
   let formattedDate
 
   if (request.method === 'POST' || request.method === 'PUT') {
     const {dueDate} = request.body
+<<<<<<< HEAD
     formattedDate = format(dueDate, 'yyyy-MM-dd')
     if (isValid(formattedDate)) {
       validDueDate = true
+=======
+    try {
+      formattedDate = format(dueDate, 'yyyy-MM-dd')
+    } catch (e) {
+      validDueDate = false
+      response.status(400)
+      response.send('Invalid Due Date')
+      console.log(e)
+>>>>>>> e3ca3a75e1cf096dc5632b60545ca386d5d43dca
     }
   }
 
